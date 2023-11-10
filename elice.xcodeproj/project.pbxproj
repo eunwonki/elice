@@ -21,6 +21,24 @@
 		661874652AFDE36000D8F037 /* AppFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661874642AFDE36000D8F037 /* AppFlowCoordinator.swift */; };
 		661874682AFDF57400D8F037 /* StoryboardInstantiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661874672AFDF57400D8F037 /* StoryboardInstantiable.swift */; };
 		6618746B2AFDF61A00D8F037 /* MainFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6618746A2AFDF61A00D8F037 /* MainFlowCoordinator.swift */; };
+		661874722AFE056500D8F037 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 661874712AFE056500D8F037 /* Alamofire */; };
+		661874752AFE070300D8F037 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661874742AFE070300D8F037 /* Endpoint.swift */; };
+		661874782AFE071600D8F037 /* DataTransferService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661874772AFE071600D8F037 /* DataTransferService.swift */; };
+		6618747A2AFE072600D8F037 /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661874792AFE072600D8F037 /* NetworkConfig.swift */; };
+		6618747F2AFE081900D8F037 /* APIEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6618747E2AFE081900D8F037 /* APIEndpoints.swift */; };
+		661874812AFE089100D8F037 /* CourseListRequestDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661874802AFE089100D8F037 /* CourseListRequestDTO+Mapping.swift */; };
+		661874832AFE089C00D8F037 /* CourseListResponseDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661874822AFE089C00D8F037 /* CourseListResponseDTO+Mapping.swift */; };
+		661874852AFE0CF700D8F037 /* EliceResultStatusResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661874842AFE0CF700D8F037 /* EliceResultStatusResponseDTO.swift */; };
+		661874872AFE134300D8F037 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 661874862AFE134300D8F037 /* RxCocoa */; };
+		661874892AFE134300D8F037 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 661874882AFE134300D8F037 /* RxRelay */; };
+		6618748B2AFE134300D8F037 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6618748A2AFE134300D8F037 /* RxSwift */; };
+		6618748F2AFE144000D8F037 /* CoreDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6618748E2AFE144000D8F037 /* CoreDataStorage.swift */; };
+		661874922AFE144C00D8F037 /* CoreDataStorage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 661874902AFE144C00D8F037 /* CoreDataStorage.xcdatamodeld */; };
+		661874952AFE166D00D8F037 /* GetCourseListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661874942AFE166D00D8F037 /* GetCourseListUseCase.swift */; };
+		661874982AFE17E000D8F037 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661874972AFE17E000D8F037 /* Course.swift */; };
+		6618749C2AFE2A3300D8F037 /* CourseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6618749B2AFE2A3300D8F037 /* CourseRepository.swift */; };
+		6618749E2AFE2ABA00D8F037 /* CourseListQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6618749D2AFE2ABA00D8F037 /* CourseListQuery.swift */; };
+		661874A02AFE2BAC00D8F037 /* DefaultCourseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6618749F2AFE2BAC00D8F037 /* DefaultCourseRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +77,20 @@
 		661874642AFDE36000D8F037 /* AppFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinator.swift; sourceTree = "<group>"; };
 		661874672AFDF57400D8F037 /* StoryboardInstantiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardInstantiable.swift; sourceTree = "<group>"; };
 		6618746A2AFDF61A00D8F037 /* MainFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinator.swift; sourceTree = "<group>"; };
+		661874742AFE070300D8F037 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Endpoint.swift; path = ../../../../../.Trash/elice/elice/Presentation/Flows/Endpoint.swift; sourceTree = "<group>"; };
+		661874772AFE071600D8F037 /* DataTransferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTransferService.swift; sourceTree = "<group>"; };
+		661874792AFE072600D8F037 /* NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
+		6618747E2AFE081900D8F037 /* APIEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoints.swift; sourceTree = "<group>"; };
+		661874802AFE089100D8F037 /* CourseListRequestDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseListRequestDTO+Mapping.swift"; sourceTree = "<group>"; };
+		661874822AFE089C00D8F037 /* CourseListResponseDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseListResponseDTO+Mapping.swift"; sourceTree = "<group>"; };
+		661874842AFE0CF700D8F037 /* EliceResultStatusResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EliceResultStatusResponseDTO.swift; sourceTree = "<group>"; };
+		6618748E2AFE144000D8F037 /* CoreDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStorage.swift; sourceTree = "<group>"; };
+		661874912AFE144C00D8F037 /* CoreDataStorage.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataStorage.xcdatamodel; sourceTree = "<group>"; };
+		661874942AFE166D00D8F037 /* GetCourseListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCourseListUseCase.swift; sourceTree = "<group>"; };
+		661874972AFE17E000D8F037 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
+		6618749B2AFE2A3300D8F037 /* CourseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseRepository.swift; sourceTree = "<group>"; };
+		6618749D2AFE2ABA00D8F037 /* CourseListQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListQuery.swift; sourceTree = "<group>"; };
+		6618749F2AFE2BAC00D8F037 /* DefaultCourseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCourseRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +98,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				661874892AFE134300D8F037 /* RxRelay in Frameworks */,
+				661874872AFE134300D8F037 /* RxCocoa in Frameworks */,
+				6618748B2AFE134300D8F037 /* RxSwift in Frameworks */,
+				661874722AFE056500D8F037 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,6 +149,7 @@
 				6618746C2AFDFB9900D8F037 /* Domain */,
 				6618746D2AFDFB9E00D8F037 /* Data */,
 				6618745A2AFDDFD300D8F037 /* Presentation */,
+				6618746F2AFE053000D8F037 /* InfraStructure */,
 				661874592AFDDFB100D8F037 /* Resources */,
 			);
 			path = elice;
@@ -203,6 +240,9 @@
 		6618746C2AFDFB9900D8F037 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				661874962AFE17D100D8F037 /* Entities */,
+				661874932AFE165600D8F037 /* UseCases */,
+				661874992AFE257100D8F037 /* Interfaces */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -210,8 +250,106 @@
 		6618746D2AFDFB9E00D8F037 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				6618747B2AFE07F500D8F037 /* Repositories */,
+				6618747C2AFE07FD00D8F037 /* Network */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		6618746F2AFE053000D8F037 /* InfraStructure */ = {
+			isa = PBXGroup;
+			children = (
+				661874732AFE06F800D8F037 /* Network */,
+			);
+			path = InfraStructure;
+			sourceTree = "<group>";
+		};
+		661874732AFE06F800D8F037 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				661874742AFE070300D8F037 /* Endpoint.swift */,
+				661874772AFE071600D8F037 /* DataTransferService.swift */,
+				661874792AFE072600D8F037 /* NetworkConfig.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		6618747B2AFE07F500D8F037 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				6618749F2AFE2BAC00D8F037 /* DefaultCourseRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		6618747C2AFE07FD00D8F037 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				6618747E2AFE081900D8F037 /* APIEndpoints.swift */,
+				6618747D2AFE080A00D8F037 /* DataMapping */,
+				6618748C2AFE13E500D8F037 /* PersistentStorages */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		6618747D2AFE080A00D8F037 /* DataMapping */ = {
+			isa = PBXGroup;
+			children = (
+				661874842AFE0CF700D8F037 /* EliceResultStatusResponseDTO.swift */,
+				661874802AFE089100D8F037 /* CourseListRequestDTO+Mapping.swift */,
+				661874822AFE089C00D8F037 /* CourseListResponseDTO+Mapping.swift */,
+			);
+			path = DataMapping;
+			sourceTree = "<group>";
+		};
+		6618748C2AFE13E500D8F037 /* PersistentStorages */ = {
+			isa = PBXGroup;
+			children = (
+				6618748D2AFE141000D8F037 /* CoreDataStorage */,
+			);
+			path = PersistentStorages;
+			sourceTree = "<group>";
+		};
+		6618748D2AFE141000D8F037 /* CoreDataStorage */ = {
+			isa = PBXGroup;
+			children = (
+				6618748E2AFE144000D8F037 /* CoreDataStorage.swift */,
+				661874902AFE144C00D8F037 /* CoreDataStorage.xcdatamodeld */,
+			);
+			path = CoreDataStorage;
+			sourceTree = "<group>";
+		};
+		661874932AFE165600D8F037 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				661874942AFE166D00D8F037 /* GetCourseListUseCase.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		661874962AFE17D100D8F037 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				661874972AFE17E000D8F037 /* Course.swift */,
+				6618749D2AFE2ABA00D8F037 /* CourseListQuery.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		661874992AFE257100D8F037 /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				6618749A2AFE259000D8F037 /* Repositories */,
+			);
+			path = Interfaces;
+			sourceTree = "<group>";
+		};
+		6618749A2AFE259000D8F037 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				6618749B2AFE2A3300D8F037 /* CourseRepository.swift */,
+			);
+			path = Repositories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,6 +368,12 @@
 			dependencies = (
 			);
 			name = elice;
+			packageProductDependencies = (
+				661874712AFE056500D8F037 /* Alamofire */,
+				661874862AFE134300D8F037 /* RxCocoa */,
+				661874882AFE134300D8F037 /* RxRelay */,
+				6618748A2AFE134300D8F037 /* RxSwift */,
+			);
 			productName = elice;
 			productReference = 661874262AFDDFA500D8F037 /* elice.app */;
 			productType = "com.apple.product-type.application";
@@ -302,6 +446,10 @@
 				Base,
 			);
 			mainGroup = 6618741D2AFDDFA500D8F037;
+			packageReferences = (
+				6618746E2AFE04EF00D8F037 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				661874702AFE056500D8F037 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 661874272AFDDFA500D8F037 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -346,13 +494,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				661874612AFDE33300D8F037 /* MainSceneDIContainer.swift in Sources */,
+				6618747A2AFE072600D8F037 /* NetworkConfig.swift in Sources */,
+				661874752AFE070300D8F037 /* Endpoint.swift in Sources */,
+				6618747F2AFE081900D8F037 /* APIEndpoints.swift in Sources */,
+				661874812AFE089100D8F037 /* CourseListRequestDTO+Mapping.swift in Sources */,
 				661874632AFDE34600D8F037 /* AppConfiguration.swift in Sources */,
+				6618749E2AFE2ABA00D8F037 /* CourseListQuery.swift in Sources */,
+				661874852AFE0CF700D8F037 /* EliceResultStatusResponseDTO.swift in Sources */,
+				661874982AFE17E000D8F037 /* Course.swift in Sources */,
 				6618745E2AFDE2E700D8F037 /* AppDIContainer.swift in Sources */,
+				6618748F2AFE144000D8F037 /* CoreDataStorage.swift in Sources */,
+				661874782AFE071600D8F037 /* DataTransferService.swift in Sources */,
 				6618742E2AFDDFA500D8F037 /* HomeViewController.swift in Sources */,
+				661874922AFE144C00D8F037 /* CoreDataStorage.xcdatamodeld in Sources */,
 				661874682AFDF57400D8F037 /* StoryboardInstantiable.swift in Sources */,
 				6618746B2AFDF61A00D8F037 /* MainFlowCoordinator.swift in Sources */,
+				661874832AFE089C00D8F037 /* CourseListResponseDTO+Mapping.swift in Sources */,
 				661874652AFDE36000D8F037 /* AppFlowCoordinator.swift in Sources */,
+				661874A02AFE2BAC00D8F037 /* DefaultCourseRepository.swift in Sources */,
 				6618742A2AFDDFA500D8F037 /* AppDelegate.swift in Sources */,
+				6618749C2AFE2A3300D8F037 /* CourseRepository.swift in Sources */,
+				661874952AFE166D00D8F037 /* GetCourseListUseCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -697,6 +859,61 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6618746E2AFE04EF00D8F037 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = exactVersion;
+				version = 6.6.0;
+			};
+		};
+		661874702AFE056500D8F037 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = exactVersion;
+				version = 5.8.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		661874712AFE056500D8F037 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 661874702AFE056500D8F037 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		661874862AFE134300D8F037 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6618746E2AFE04EF00D8F037 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		661874882AFE134300D8F037 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6618746E2AFE04EF00D8F037 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		6618748A2AFE134300D8F037 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6618746E2AFE04EF00D8F037 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		661874902AFE144C00D8F037 /* CoreDataStorage.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				661874912AFE144C00D8F037 /* CoreDataStorage.xcdatamodel */,
+			);
+			currentVersion = 661874912AFE144C00D8F037 /* CoreDataStorage.xcdatamodel */;
+			path = CoreDataStorage.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 6618741E2AFDDFA500D8F037 /* Project object */;
 }

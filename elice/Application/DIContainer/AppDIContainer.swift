@@ -9,6 +9,16 @@ import Foundation
 
 final class AppDIContainer {
     
+    lazy var appConfiguration = AppConfiguration()
+    
+    // MARK: - Network Service
+    
+    lazy var eliceDataTransferService: DataTransferService = {
+        let config = ApiDataNetworkConfig(
+            baseURL: URL(string: appConfiguration.eliceApiBaseUrl)!
+        )
+        return DefaultDataTransferService(with: config)
+    }()
     
     // MARK: - DIContainers of scenes
     
