@@ -15,8 +15,8 @@ struct CourseListRequestDTO: Encodable {
     let filterConditions: ConditionsDTO?
     
     enum CodingKeys: String, CodingKey {
-        case offset = "Offset"
-        case count = "Count"
+        case offset
+        case count
         case filterIsRecommended = "filter_is_recommended"
         case filterIsFree = "filter_is_free"
         case filterConditions = "filter_conditions"

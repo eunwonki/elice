@@ -23,7 +23,11 @@ final class AppDIContainer {
     // MARK: - DIContainers of scenes
     
     func makeMainSceneDIContainer() -> MainSceneDIContainer {
-        MainSceneDIContainer()
+        MainSceneDIContainer(
+            dependencies: .init(
+                eliceApiService: eliceDataTransferService
+            )
+        )
     }
     
 }

@@ -13,7 +13,7 @@ final class CoreDataRegisteredCourseStorage {
     
     private let coreDataStorage: CoreDataStorage
     
-    init(coreDataStorage: CoreDataStorage) {
+    init(coreDataStorage: CoreDataStorage = .shared) {
         self.coreDataStorage = coreDataStorage
     }
     

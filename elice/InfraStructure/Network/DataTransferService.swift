@@ -40,7 +40,6 @@ extension DefaultDataTransferService: DataTransferService {
             self?.session.request(request)
                 .responseDecodable(of: T.self) {
                     response in
-                    
                     switch response.result {
                     case .success(let data):
                         observer.onNext(.success(data))

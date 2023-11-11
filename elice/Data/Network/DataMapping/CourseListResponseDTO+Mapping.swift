@@ -19,10 +19,10 @@ struct CourseListResponseDTO: Decodable {
     }
     
     struct CourseDTO: Decodable {
-        let id: String
+        let id: Int
         let title: String
         let shortDescription: String
-        let logoFileUrl: String
+        let logoFileUrl: String?
         let imageFileUrl: String?
         let tags: [TagDTO]
         
@@ -37,7 +37,7 @@ struct CourseListResponseDTO: Decodable {
     }
     
     struct TagDTO: Decodable {
-        var id: String
+        var id: Int
         var name: String
     }
 }
@@ -47,7 +47,7 @@ struct CourseListResponseDTO: Decodable {
 extension CourseListResponseDTO.CourseDTO {
     func toDomain() -> Course {
         .init(
-            id: id, logo: logoFileUrl,
+            id: String(id), logo: logoFileUrl,
             image: imageFileUrl, title: title,
             description: shortDescription,
             tags: tags.map { $0.toDomain() }
@@ -57,6 +57,6 @@ extension CourseListResponseDTO.CourseDTO {
 
 extension CourseListResponseDTO.TagDTO {
     func toDomain() -> Course.Tag {
-        .init(id: id, name: name)
+        .init(id: String(id), name: name)
     }
 }

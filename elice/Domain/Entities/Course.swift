@@ -9,7 +9,7 @@ import Foundation
 
 struct Course {
     let id: String
-    let logo: String
+    let logo: String?
     let image: String?
     let title: String
     let description: String

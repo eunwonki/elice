@@ -13,5 +13,6 @@ struct EliceResultStatusResponseDTO: Decodable {
     
     enum Status: String, Decodable {
         case ok
+        case fail
     }
 }

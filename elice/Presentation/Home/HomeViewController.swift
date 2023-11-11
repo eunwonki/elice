@@ -8,15 +8,29 @@
 import UIKit
 
 class HomeViewController: UIViewController, StoryboardInstantiable {
+    
+    var reactor: HomeViewReactor!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        bind()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        reactor.action.onNext(.viewDidAppear)
     }
 
-    static func create() -> HomeViewController {
-        HomeViewController.instantiateViewController()
+    static func create(
+        with reactor: HomeViewReactor
+    ) -> HomeViewController {
+        let view = HomeViewController.instantiateViewController()
+        view.reactor = reactor
+        return view
     }
 
+    private func bind() {
+        
+    }
 }
 
