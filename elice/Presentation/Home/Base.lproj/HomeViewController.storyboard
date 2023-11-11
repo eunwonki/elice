@@ -57,7 +57,7 @@
                                 <rect key="frame" x="0.0" y="123" width="393" height="729"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="292" id="a1H-OQ-Cjj">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CourseListCell" rowHeight="292" id="a1H-OQ-Cjj" customClass="CourseListCell" customModule="elice" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="292"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="a1H-OQ-Cjj" id="4zQ-ri-21A">
@@ -76,14 +76,14 @@
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="R36-9L-6ix">
                                                     <rect key="frame" x="20" y="43" width="353" height="238"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Uoa-h5-eaV">
-                                                        <size key="itemSize" width="128" height="128"/>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Uoa-h5-eaV">
+                                                        <size key="itemSize" width="200" height="220"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                         <inset key="sectionInset" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Rno-ZK-eWL">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CourseCell" id="Rno-ZK-eWL" customClass="CourseCell" customModule="elice" customModuleProvider="target">
                                                             <rect key="frame" x="16" y="9" width="200" height="220"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="nHq-xi-Hum">
@@ -92,10 +92,17 @@
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="f6X-RE-0KF">
                                                                         <rect key="frame" x="0.0" y="0.0" width="200" height="100"/>
+                                                                        <color key="backgroundColor" name="BlueGray"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="100" id="fGd-Gl-pP3"/>
                                                                             <constraint firstAttribute="width" constant="200" id="ghg-q4-Qsq"/>
                                                                         </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                <integer key="value" value="10"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="faH-UK-pUg">
                                                                         <rect key="frame" x="0.0" y="108" width="200" height="24"/>
@@ -112,7 +119,7 @@
                                                                             <constraint firstAttribute="height" constant="14" id="G9g-NV-ues"/>
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" name="NotoSans-Regular" family="Noto Sans" pointSize="10"/>
-                                                                        <color key="textColor" name="Gray"/>
+                                                                        <color key="textColor" name="Gray147"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jTj-jV-uqp">
@@ -163,6 +170,12 @@
                                                                 </constraints>
                                                             </collectionViewCellContentView>
                                                             <size key="customSize" width="200" height="220"/>
+                                                            <connections>
+                                                                <outlet property="descriptionLabel" destination="ilA-z7-sfo" id="vHm-eo-iuS"/>
+                                                                <outlet property="imageView" destination="f6X-RE-0KF" id="r30-Jg-hS3"/>
+                                                                <outlet property="tagView" destination="jTj-jV-uqp" id="mdA-2U-QsW"/>
+                                                                <outlet property="titleLabel" destination="faH-UK-pUg" id="c2w-cs-cD3"/>
+                                                            </connections>
                                                         </collectionViewCell>
                                                     </cells>
                                                 </collectionView>
@@ -176,6 +189,10 @@
                                                 <constraint firstItem="R36-9L-6ix" firstAttribute="top" secondItem="oAI-Pl-o7h" secondAttribute="bottom" id="yLZ-C4-EeQ"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="collectionView" destination="R36-9L-6ix" id="aZR-ZG-SrR"/>
+                                            <outlet property="titleLabel" destination="oAI-Pl-o7h" id="ogV-Pr-HtG"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>
@@ -193,6 +210,9 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="OjH-Kc-poY" secondAttribute="trailing" id="yln-P2-bTr"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="OjH-Kc-poY" id="0lN-8P-Jqg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -202,7 +222,10 @@
     <resources>
         <image name="Logo" width="294.5" height="64"/>
         <image name="search" width="48" height="48"/>
-        <namedColor name="Gray">
+        <namedColor name="BlueGray">
+            <color red="0.22700000000000001" green="0.22700000000000001" blue="0.29799999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Gray147">
             <color red="0.14099999999999999" green="0.14099999999999999" blue="0.14099999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">

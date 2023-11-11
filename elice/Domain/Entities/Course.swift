@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Course {
+struct Course: Equatable {
     let id: String
     let logo: String?
     let image: String?
@@ -18,5 +18,9 @@ struct Course {
     struct Tag {
         let id: String
         let name: String
+    }
+    
+    static func == (lhs: Course, rhs: Course) -> Bool {
+        lhs.id == rhs.id
     }
 }

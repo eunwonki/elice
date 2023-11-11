@@ -10,8 +10,8 @@ import Foundation
 struct CourseListRequestDTO: Encodable {
     let offset: Int
     let count: Int
-    let filterIsRecommended: Bool?
-    let filterIsFree: Bool?
+    let filterIsRecommended: String?
+    let filterIsFree: String?
     let filterConditions: ConditionsDTO?
     
     enum CodingKeys: String, CodingKey {

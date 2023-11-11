@@ -91,8 +91,8 @@ final class DefaultCourseRepository: CourseRepository {
                 observer.onNext(APIEndpoints.getCourseList(
                     with: .init(offset: offset,
                                 count: size,
-                                filterIsRecommended: query == .recommend ? true : nil,
-                                filterIsFree: query == .free ? true : nil,
+                                filterIsRecommended: query == .recommend ? "true" : nil,
+                                filterIsFree: query == .free ? "true" : nil,
                                 filterConditions: nil)))
                 observer.onCompleted()
             }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum CourseListQuery {
+enum CourseListQuery: CaseIterable {
     case recommend
     case free
     case registered

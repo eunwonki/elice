@@ -14,6 +14,27 @@ final class HomeViewReactor {
     private let getCourseListUseCase: GetCourseListUseCase
     private let pageSize = 10
     
+    lazy var recommendListReactor: CourseListViewReactor = {
+        .init(
+            getCourseListUseCase: self.getCourseListUseCase,
+            queryType: .recommend
+        )
+    }()
+    
+    lazy var freeListReactor: CourseListViewReactor = {
+        .init(
+            getCourseListUseCase: self.getCourseListUseCase,
+            queryType: .free
+        )
+    }()
+    
+    lazy var registeredListReactor: CourseListViewReactor = {
+        .init(
+            getCourseListUseCase: self.getCourseListUseCase,
+            queryType: .registered
+        )
+    }()
+    
     init(getCourseListUseCase: GetCourseListUseCase) {
         self.getCourseListUseCase = getCourseListUseCase
     }
@@ -26,58 +47,26 @@ extension HomeViewReactor: Reactor {
         State()
     }
     
-    struct State {
-        var list: [Course] = .init()
-    }
+    struct State {}
     
     enum Action {
         case none
-        case viewDidAppear
+        case viewDidLoad
     }
     
     enum Mutation {
         case none
-        case courseListLoaded(list: [Course])
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case .viewDidAppear: 
-            return onViewDidAppear()
+        case .viewDidLoad: 
+            self.recommendListReactor.action.onNext(.viewDidLoad)
+            self.freeListReactor.action.onNext(.viewDidLoad)
+            self.registeredListReactor.action.onNext(.viewDidLoad)
+            return .just(.none)
         default:
             return .just(.none)
         }
     }
-    
-    func reduce(state: State, mutation: Mutation) -> State {
-        var state = state
-        switch mutation {
-        case let .courseListLoaded(list):
-            print(list)
-            state.list = list
-        default: break
-        }
-        return state
-    }
-}
-
-// MARK: - Private
-
-extension HomeViewReactor {
-    
-    private func onViewDidAppear() -> Observable<Mutation> {
-        Observable
-            .merge(
-                getCourseListUseCase.execute(
-                    query: .recommend, offset: 0, size: pageSize),
-                getCourseListUseCase.execute(
-                    query: .free, offset: 0, size: pageSize),
-                getCourseListUseCase.execute(
-                    query: .registered, offset: 0, size: pageSize)
-            )
-            .map {
-                return .courseListLoaded(list: $0)
-            }
-    }
-    
 }
