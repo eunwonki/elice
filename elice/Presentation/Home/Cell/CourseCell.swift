@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Kingfisher
 import UIKit
 
 final class CourseCell: UICollectionViewCell {
@@ -20,5 +21,15 @@ final class CourseCell: UICollectionViewCell {
     func bind(_ course: Course) {
         titleLabel.text = course.title
         descriptionLabel.text = course.description
+        
+        if let image = course.image,
+           let url = URL(string: image) {
+            imageView.kf.setImage(with: url)
+            imageView.contentMode = .scaleAspectFill
+        } else if let logo = course.logo,
+                  let url = URL(string: logo) {
+            imageView.kf.setImage(with: url)
+            imageView.contentMode = .scaleAspectFit
+        }
     }
 }
