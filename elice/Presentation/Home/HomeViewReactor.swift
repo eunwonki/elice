@@ -12,11 +12,13 @@ import ReactorKit
 
 final class HomeViewReactor {
     private let getCourseListUseCase: GetCourseListUseCase
+    private let flowActions: MainFlowCoordinateActions?
     private let pageSize = 10
     
     lazy var recommendListReactor: CourseListViewReactor = {
         .init(
-            getCourseListUseCase: self.getCourseListUseCase,
+            getCourseListUseCase: self.getCourseListUseCase, 
+            flowActions: self.flowActions,
             queryType: .recommend
         )
     }()
@@ -24,6 +26,7 @@ final class HomeViewReactor {
     lazy var freeListReactor: CourseListViewReactor = {
         .init(
             getCourseListUseCase: self.getCourseListUseCase,
+            flowActions: self.flowActions,
             queryType: .free
         )
     }()
@@ -31,12 +34,17 @@ final class HomeViewReactor {
     lazy var registeredListReactor: CourseListViewReactor = {
         .init(
             getCourseListUseCase: self.getCourseListUseCase,
+            flowActions: self.flowActions,
             queryType: .registered
         )
     }()
     
-    init(getCourseListUseCase: GetCourseListUseCase) {
+    init(
+        getCourseListUseCase: GetCourseListUseCase,
+        flowActions: MainFlowCoordinateActions? = nil
+    ) {
         self.getCourseListUseCase = getCourseListUseCase
+        self.flowActions = flowActions
     }
 }
 

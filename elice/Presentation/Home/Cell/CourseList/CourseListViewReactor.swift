@@ -10,15 +10,18 @@ import ReactorKit
 
 final class CourseListViewReactor {
     private let getCourseListUseCase: GetCourseListUseCase
+    private let flowActions: MainFlowCoordinateActions?
     private let queryType: CourseListQuery
     private let pageSize: Int
     
     init(
         getCourseListUseCase: GetCourseListUseCase,
+        flowActions: MainFlowCoordinateActions?,
         queryType: CourseListQuery,
         pageSize: Int = 10
     ) {
         self.getCourseListUseCase = getCourseListUseCase
+        self.flowActions = flowActions
         self.queryType = queryType
         self.pageSize = pageSize
     }
@@ -54,6 +57,7 @@ extension CourseListViewReactor: Reactor {
             return loadCourses()
         case .selectItem(let index):
             print("select \(index.row)")
+            flowActions?.showCourseDetail()
             return .just(.none)
         default:
             return .just(.none)

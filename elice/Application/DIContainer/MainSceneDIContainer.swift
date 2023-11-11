@@ -40,12 +40,29 @@ final class MainSceneDIContainer: MainFlowCoordinatorDependencies {
     
     // MARK: - Home
     
-    func makeHomeViewController() -> HomeViewController {
-        HomeViewController.create(with: makeHomeViewReactor())
+    func makeHomeViewController(
+        flowActions: MainFlowCoordinateActions
+    ) -> HomeViewController {
+        HomeViewController.create(
+            with: makeHomeViewReactor(
+                flowActions: flowActions
+            )
+        )
     }
     
-    func makeHomeViewReactor() -> HomeViewReactor {
-        HomeViewReactor(getCourseListUseCase: makeGetCourseListUseCase())
+    func makeHomeViewReactor(
+        flowActions: MainFlowCoordinateActions
+    ) -> HomeViewReactor {
+        HomeViewReactor(
+            getCourseListUseCase: makeGetCourseListUseCase(),
+            flowActions: flowActions
+        )
+    }
+    
+    // MARK: - Cours Detail
+    
+    func makeCourseDetailViewController() -> CourseDetailViewController {
+        CourseDetailViewController.create()
     }
     
     // MARK: - Flows

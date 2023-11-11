@@ -54,6 +54,9 @@
 		661874C02AFF8F8100D8F037 /* CourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661874BF2AFF8F8100D8F037 /* CourseCell.swift */; };
 		661874C42AFF9AD100D8F037 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 661874C32AFF9AD100D8F037 /* RxDataSources */; };
 		661874C62AFFAFDF00D8F037 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661874C52AFFAFDF00D8F037 /* Array+Extension.swift */; };
+		661874C92AFFB43200D8F037 /* CourseDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 661874C82AFFB43200D8F037 /* CourseDetailViewController.storyboard */; };
+		661874CB2AFFB44500D8F037 /* CourseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661874CA2AFFB44500D8F037 /* CourseDetailViewController.swift */; };
+		661874CD2AFFBC4B00D8F037 /* MainFlowCoordinateActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661874CC2AFFBC4B00D8F037 /* MainFlowCoordinateActions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +122,9 @@
 		661874BD2AFF6F9F00D8F037 /* CourseListViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListViewReactor.swift; sourceTree = "<group>"; };
 		661874BF2AFF8F8100D8F037 /* CourseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseCell.swift; sourceTree = "<group>"; };
 		661874C52AFFAFDF00D8F037 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
+		661874C82AFFB43200D8F037 /* CourseDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CourseDetailViewController.storyboard; sourceTree = "<group>"; };
+		661874CA2AFFB44500D8F037 /* CourseDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailViewController.swift; sourceTree = "<group>"; };
+		661874CC2AFFBC4B00D8F037 /* MainFlowCoordinateActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinateActions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +224,7 @@
 			children = (
 				661874692AFDF5FA00D8F037 /* Flows */,
 				6618745C2AFDE12900D8F037 /* Home */,
+				661874C72AFFB40E00D8F037 /* CourseDetail */,
 				661874662AFDF56400D8F037 /* Util */,
 			);
 			path = Presentation;
@@ -267,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				6618746A2AFDF61A00D8F037 /* MainFlowCoordinator.swift */,
+				661874CC2AFFBC4B00D8F037 /* MainFlowCoordinateActions.swift */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -427,6 +435,15 @@
 			path = CourseList;
 			sourceTree = "<group>";
 		};
+		661874C72AFFB40E00D8F037 /* CourseDetail */ = {
+			isa = PBXGroup;
+			children = (
+				661874C82AFFB43200D8F037 /* CourseDetailViewController.storyboard */,
+				661874CA2AFFB44500D8F037 /* CourseDetailViewController.swift */,
+			);
+			path = CourseDetail;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -552,6 +569,7 @@
 				661874B62AFF6A5400D8F037 /* NotoSans-Regular.ttf in Resources */,
 				661874B52AFF6A5400D8F037 /* NotoSans-Medium.ttf in Resources */,
 				661874312AFDDFA500D8F037 /* HomeViewController.storyboard in Resources */,
+				661874C92AFFB43200D8F037 /* CourseDetailViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,6 +599,7 @@
 				661874752AFE070300D8F037 /* Endpoint.swift in Sources */,
 				6618747F2AFE081900D8F037 /* APIEndpoints.swift in Sources */,
 				661874A62AFE352F00D8F037 /* RegisteredCourseStorage.swift in Sources */,
+				661874CB2AFFB44500D8F037 /* CourseDetailViewController.swift in Sources */,
 				661874812AFE089100D8F037 /* CourseListRequestDTO+Mapping.swift in Sources */,
 				661874632AFDE34600D8F037 /* AppConfiguration.swift in Sources */,
 				661874A22AFE32F200D8F037 /* RegisterCourseUseCase.swift in Sources */,
@@ -606,6 +625,7 @@
 				661874BC2AFF6F0300D8F037 /* CourseListCell.swift in Sources */,
 				661874A82AFE35E900D8F037 /* CoreDataRegisteredCourseStorage.swift in Sources */,
 				6618749C2AFE2A3300D8F037 /* CourseRepository.swift in Sources */,
+				661874CD2AFFBC4B00D8F037 /* MainFlowCoordinateActions.swift in Sources */,
 				661874952AFE166D00D8F037 /* GetCourseListUseCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

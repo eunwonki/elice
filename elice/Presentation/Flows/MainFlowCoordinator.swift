@@ -9,13 +9,17 @@ import Foundation
 import UIKit
 
 protocol MainFlowCoordinatorDependencies {
-    func makeHomeViewController() -> HomeViewController
+    func makeHomeViewController(
+        flowActions: MainFlowCoordinateActions
+    ) -> HomeViewController
+    func makeCourseDetailViewController() -> CourseDetailViewController
 }
 
 final class MainFlowCoordinator {
     
     private weak var navigationController: UINavigationController?
     private let dependencies: MainFlowCoordinatorDependencies
+    private var flowActions: MainFlowCoordinateActions!
     
     private weak var homeView: HomeViewController?
     
@@ -28,9 +32,20 @@ final class MainFlowCoordinator {
     }
     
     func start() {
-        let vc = dependencies.makeHomeViewController()
+        flowActions = MainFlowCoordinateActions(
+            showCourseDetail: showCourseDetailView
+        )
+        
+        let vc = dependencies.makeHomeViewController(
+            flowActions: flowActions
+        )
         navigationController?.pushViewController(vc, animated: false)
         navigationController?.navigationBar.isHidden = true
         homeView = vc
+    }
+    
+    func showCourseDetailView() {
+        let view = dependencies.makeCourseDetailViewController()
+        navigationController?.pushViewController(view, animated: true)
     }
 }
