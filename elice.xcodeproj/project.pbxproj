@@ -45,6 +45,10 @@
 		661874A82AFE35E900D8F037 /* CoreDataRegisteredCourseStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661874A72AFE35E900D8F037 /* CoreDataRegisteredCourseStorage.swift */; };
 		661874AC2AFF524600D8F037 /* ReactorKit in Frameworks */ = {isa = PBXBuildFile; productRef = 661874AB2AFF524600D8F037 /* ReactorKit */; };
 		661874AE2AFF525D00D8F037 /* HomeViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661874AD2AFF525D00D8F037 /* HomeViewReactor.swift */; };
+		661874B52AFF6A5400D8F037 /* NotoSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 661874B02AFF6A5400D8F037 /* NotoSans-Medium.ttf */; };
+		661874B62AFF6A5400D8F037 /* NotoSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 661874B12AFF6A5400D8F037 /* NotoSans-Regular.ttf */; };
+		661874B72AFF6A5400D8F037 /* NotoSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 661874B22AFF6A5400D8F037 /* NotoSans-Bold.ttf */; };
+		661874B82AFF6A5400D8F037 /* NotoSans-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 661874B32AFF6A5400D8F037 /* NotoSans-Thin.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +106,10 @@
 		661874A52AFE352F00D8F037 /* RegisteredCourseStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredCourseStorage.swift; sourceTree = "<group>"; };
 		661874A72AFE35E900D8F037 /* CoreDataRegisteredCourseStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataRegisteredCourseStorage.swift; sourceTree = "<group>"; };
 		661874AD2AFF525D00D8F037 /* HomeViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewReactor.swift; sourceTree = "<group>"; };
+		661874B02AFF6A5400D8F037 /* NotoSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Medium.ttf"; sourceTree = "<group>"; };
+		661874B12AFF6A5400D8F037 /* NotoSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Regular.ttf"; sourceTree = "<group>"; };
+		661874B22AFF6A5400D8F037 /* NotoSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Bold.ttf"; sourceTree = "<group>"; };
+		661874B32AFF6A5400D8F037 /* NotoSans-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Thin.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +195,7 @@
 		661874592AFDDFB100D8F037 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				661874AF2AFF69E700D8F037 /* Fonts */,
 				661874322AFDDFA600D8F037 /* Assets.xcassets */,
 				661874342AFDDFA600D8F037 /* LaunchScreen.storyboard */,
 				661874372AFDDFA600D8F037 /* Info.plist */,
@@ -377,6 +386,17 @@
 			path = RegisteredCourseStorage;
 			sourceTree = "<group>";
 		};
+		661874AF2AFF69E700D8F037 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				661874B22AFF6A5400D8F037 /* NotoSans-Bold.ttf */,
+				661874B02AFF6A5400D8F037 /* NotoSans-Medium.ttf */,
+				661874B12AFF6A5400D8F037 /* NotoSans-Regular.ttf */,
+				661874B32AFF6A5400D8F037 /* NotoSans-Thin.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -493,8 +513,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				661874B72AFF6A5400D8F037 /* NotoSans-Bold.ttf in Resources */,
+				661874B82AFF6A5400D8F037 /* NotoSans-Thin.ttf in Resources */,
 				661874362AFDDFA600D8F037 /* LaunchScreen.storyboard in Resources */,
 				661874332AFDDFA600D8F037 /* Assets.xcassets in Resources */,
+				661874B62AFF6A5400D8F037 /* NotoSans-Regular.ttf in Resources */,
+				661874B52AFF6A5400D8F037 /* NotoSans-Medium.ttf in Resources */,
 				661874312AFDDFA500D8F037 /* HomeViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
