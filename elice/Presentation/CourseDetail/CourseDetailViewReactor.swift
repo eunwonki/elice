@@ -11,13 +11,16 @@ import ReactorKit
 final class CourseDetailViewReactor {
     let courseId: String
     let getCourseUseCase: GetCourseUseCase
+    let registerCourseUseCase: RegisterCourseUseCase
     
     init(
         courseId: String,
-        getCourseUseCase: GetCourseUseCase
+        getCourseUseCase: GetCourseUseCase,
+        registerCourseUseCase: RegisterCourseUseCase
     ) {
         self.courseId = courseId
         self.getCourseUseCase = getCourseUseCase
+        self.registerCourseUseCase = registerCourseUseCase
     }
 }
 
@@ -48,6 +51,8 @@ extension CourseDetailViewReactor: Reactor {
         switch action {
         case .viewDidLoad:
             return onViewDidLoad()
+        case .didRegisterClicked(let query):
+            return onRegisterClick(query: query)
         default:
             return .just(.none)
         }
@@ -58,6 +63,8 @@ extension CourseDetailViewReactor: Reactor {
         switch mutation {
         case .didLoadCourse(let course):
             state.course = course
+        case .getRegistered(let isRegistered):
+            state.isRegistered = isRegistered
         default: break
         }
         return state
@@ -68,13 +75,25 @@ extension CourseDetailViewReactor: Reactor {
 
 extension CourseDetailViewReactor {
     func onViewDidLoad() -> Observable<Mutation> {
-//        Observable.merge {
-//            
-//        }
-        
-        getCourseUseCase.execute(id: courseId)
-            .map {
-                .didLoadCourse(course: $0)
-            }
+        Observable.merge (
+            getCourseUseCase.execute(id: courseId)
+                .map {
+                    .didLoadCourse(course: $0)
+                },
+            registerCourseUseCase.checkRegistered(id: courseId)
+                .map {
+                    Mutation.getRegistered(state: $0)
+                }
+        )
+    }
+    
+    func onRegisterClick(
+        query: CourseRegisterQuery
+    ) -> Observable<Mutation> {
+        registerCourseUseCase.execute(
+            query: query, id: courseId
+        ).map { Mutation.getRegistered(
+            state: query == .register
+        ) }
     }
 }

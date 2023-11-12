@@ -21,4 +21,6 @@ protocol CourseRepository {
     func registerCourse(
         query: CourseRegisterQuery, id: String
     )
+    
+    func checkRegistered(id: String) -> Observable<Result<Bool, Error>>
 }

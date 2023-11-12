@@ -42,6 +42,10 @@ final class MainSceneDIContainer: MainFlowCoordinatorDependencies {
         DefaultGetCourseUseCase(repository: makeCourseRepository())
     }
     
+    func makeRegisterCourseUseCase() -> RegisterCourseUseCase {
+        DefaultRegisterCourseUseCase(repository: makeCourseRepository())
+    }
+    
     // MARK: - Home
     
     func makeHomeViewController(
@@ -78,7 +82,8 @@ final class MainSceneDIContainer: MainFlowCoordinatorDependencies {
     ) -> CourseDetailViewReactor {
         CourseDetailViewReactor(
             courseId: id,
-            getCourseUseCase: makeGetCourseUseCase()
+            getCourseUseCase: makeGetCourseUseCase(),
+            registerCourseUseCase: makeRegisterCourseUseCase()
         )
     }
     

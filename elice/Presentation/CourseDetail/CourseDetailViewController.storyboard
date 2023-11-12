@@ -201,11 +201,10 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i6o-3K-8Bp">
                                         <rect key="frame" x="16" y="16" width="361" height="48"/>
+                                        <color key="backgroundColor" name="Blue01"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain">
-                                            <backgroundConfiguration key="background">
-                                                <color key="backgroundColor" name="Blue01"/>
-                                            </backgroundConfiguration>
+                                            <backgroundConfiguration key="background"/>
                                         </buttonConfiguration>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>

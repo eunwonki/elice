@@ -24,6 +24,18 @@ final class DefaultCourseRepository: CourseRepository {
         persistentStore.request(query: query, id: id)
     }
     
+    func checkRegistered(id: String) -> Observable<Result<Bool, Error>> {
+        persistentStore.fetchRegisterCoursesIds()
+            .map { result in
+                switch result {
+                case .success(let list):
+                    return .success(list.contains { $0 == id })
+                case.failure(let error):
+                    return .failure(error)
+                }
+            }
+    }
+    
     func fetchCourse(
         id: String
     ) -> Observable<Result<Course, Error>> {

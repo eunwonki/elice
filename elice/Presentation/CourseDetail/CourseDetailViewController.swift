@@ -59,13 +59,14 @@ class CourseDetailViewController: UIViewController, StoryboardInstantiable {
     }
     
     private func setupStackView(_ course: Course) {
-        if let image = course.image {
+        if let image = course.image,
+           image.isEmpty == false {
             titleWithoutImageView.removeFromSuperview()
             stackView.addArrangedSubview(titleWithImageView)
             
             titleWithImage.text = course.title
             logoWithImage.kf.setImage(with: URL(string: course.logo ?? ""))
-            imageWithImage.kf.setImage(with: URL(string: course.image ?? ""))
+            imageWithImage.kf.setImage(with: URL(string: image))
         } else {
             titleWithImageView.removeFromSuperview()
             stackView.addArrangedSubview(titleWithoutImageView)
@@ -102,10 +103,12 @@ class CourseDetailViewController: UIViewController, StoryboardInstantiable {
             .disposed(by: disposeBag)
         
         reactor.state.compactMap(\.course)
+            .distinctUntilChanged()
             .bind(onNext: setupStackView)
             .disposed(by: disposeBag)
         
         reactor.state.map(\.isRegistered)
+            .distinctUntilChanged()
             .bind { [weak self] registered in
                 guard let registered else {
                     self?.registerButton.isHidden = true
@@ -113,10 +116,14 @@ class CourseDetailViewController: UIViewController, StoryboardInstantiable {
                     return
                 }
                 
+                self?.registerButton.isHidden = false
+                self?.registerButtonLabel.isHidden = false
                 self?.registerButton.backgroundColor = registered ?
                 UIColor(resource: .red01) : UIColor(resource: .blue01)
                 self?.registerButtonLabel.text = registered ?
                 "수강 취소" : "수강 신청"
+                
+                self?.view.setNeedsLayout()
             }
             .disposed(by: disposeBag)
     }
