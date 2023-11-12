@@ -41,6 +41,7 @@ extension CourseDTO {
             logo: logoFileUrl,
             image: imageFileUrl,
             shortDescription: shortDescription,
+            description: description,
             tags: tags.map { $0.toDomain() }
         )
     }
