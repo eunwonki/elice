@@ -56,8 +56,9 @@ extension CourseListViewReactor: Reactor {
         case .loadMorePage:
             return loadCourses()
         case .selectItem(let index):
-            print("select \(index.row)")
-            flowActions?.showCourseDetail()
+            if case .firstItem(let course) = currentState.courseSection.items[index.row] {
+                flowActions?.showCourseDetail(course.id)
+            }
             return .just(.none)
         default:
             return .just(.none)

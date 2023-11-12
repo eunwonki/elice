@@ -9,10 +9,11 @@ import Foundation
 
 struct Course: Equatable {
     let id: String
-    let logo: String?
-    let image: String?
     let title: String
-    let description: String
+    var logo: String?
+    var image: String?
+    var shortDescription: String?
+    var description: String?
     let tags: [Tag]
     
     struct Tag {

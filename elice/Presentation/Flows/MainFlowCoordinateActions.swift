@@ -8,5 +8,7 @@
 import Foundation
 
 struct MainFlowCoordinateActions {
-    let showCourseDetail: () -> Void
+    let showCourseDetail: (
+        _ id: String
+    ) -> Void
 }

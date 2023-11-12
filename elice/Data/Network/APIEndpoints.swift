@@ -20,4 +20,15 @@ struct APIEndpoints {
         )
     }
     
+    static func getCourse(
+        with request: CourseRequestDTO
+    ) -> Endpoint<CourseResponseDTO> {
+        return Endpoint(
+            path: "academy/course/get/",
+            isFullPath: false,
+            method: .get,
+            queryParameters: request
+        )
+    }
+    
 }

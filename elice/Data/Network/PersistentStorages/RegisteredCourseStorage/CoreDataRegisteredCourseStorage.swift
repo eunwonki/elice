@@ -27,7 +27,7 @@ final class CoreDataRegisteredCourseStorage {
         
         do {
             let courses = try context.fetch(request)
-            for course in courses{
+            for course in courses {
                 context.delete(course)
             }
             try context.save()

@@ -14,6 +14,10 @@ protocol CourseRepository {
         offset: Int, size: Int
     ) -> Observable<Result<[Course], Error>>
     
+    func fetchCourse(
+        id: String
+    ) -> Observable<Result<Course, Error>>
+    
     func registerCourse(
         query: CourseRegisterQuery, id: String
     )

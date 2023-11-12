@@ -24,6 +24,28 @@ final class DefaultCourseRepository: CourseRepository {
         persistentStore.request(query: query, id: id)
     }
     
+    func fetchCourse(
+        id: String
+    ) -> Observable<Result<Course, Error>> {
+        let endpoint = APIEndpoints.getCourse(with: .init(courseId: id))
+        return eliceApiService.request(with: endpoint)
+            .map { result in
+                switch result {
+                case .success(let response):
+                    switch response.result.status {
+                    case .ok:
+                        return .success(response.course.toDomain())
+                    case .fail:
+                        return .failure(NSError(
+                            domain: response.result.reason ?? "",
+                            code: -1
+                        ))
+                    }
+                case .failure(let error): return .failure(error)
+                }
+            }
+    }
+    
     func fetchCourseList(
         query: CourseListQuery,
         offset: Int, size: Int

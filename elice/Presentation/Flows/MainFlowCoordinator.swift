@@ -12,7 +12,9 @@ protocol MainFlowCoordinatorDependencies {
     func makeHomeViewController(
         flowActions: MainFlowCoordinateActions
     ) -> HomeViewController
-    func makeCourseDetailViewController() -> CourseDetailViewController
+    func makeCourseDetailViewController(
+        id: String
+    ) -> CourseDetailViewController
 }
 
 final class MainFlowCoordinator {
@@ -44,8 +46,8 @@ final class MainFlowCoordinator {
         homeView = vc
     }
     
-    func showCourseDetailView() {
-        let view = dependencies.makeCourseDetailViewController()
+    func showCourseDetailView(courseId: String) {
+        let view = dependencies.makeCourseDetailViewController(id: courseId)
         navigationController?.pushViewController(view, animated: true)
     }
 }
