@@ -65,7 +65,9 @@ class CourseDetailViewController: UIViewController, StoryboardInstantiable {
             stackView.addArrangedSubview(titleWithImageView)
             
             titleWithImage.text = course.title
-            logoWithImage.kf.setImage(with: URL(string: course.logo ?? ""))
+            if let logo = course.logo, logo.isEmpty == false {
+                logoWithImage.kf.setImage(with: URL(string: logo))
+            }
             imageWithImage.kf.setImage(with: URL(string: image))
         } else {
             titleWithImageView.removeFromSuperview()
@@ -73,7 +75,9 @@ class CourseDetailViewController: UIViewController, StoryboardInstantiable {
             
             titleWithoutImage.text = course.title
             shortDescriptionWithoutImage.text = course.shortDescription ?? ""
-            logoWithoutImage.kf.setImage(with: URL(string: course.logo ?? ""))
+            if let logo = course.logo, logo.isEmpty == false {
+                logoWithoutImage.kf.setImage(with: URL(string: logo))
+            }
         }
         
         if let description = course.description,
@@ -105,6 +109,13 @@ class CourseDetailViewController: UIViewController, StoryboardInstantiable {
         reactor.state.compactMap(\.course)
             .distinctUntilChanged()
             .bind(onNext: setupStackView)
+            .disposed(by: disposeBag)
+        
+        reactor.state.map(\.lectures)
+            .distinctUntilChanged()
+            .bind { lectures in
+                print("\(lectures)")
+            }
             .disposed(by: disposeBag)
         
         reactor.state.map(\.isRegistered)

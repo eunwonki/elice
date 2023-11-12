@@ -31,4 +31,14 @@ struct APIEndpoints {
         )
     }
     
+    static func getLectureList(
+        with request: LectureListRequestDTO
+    ) -> Endpoint<LectureListResponseDTO> {
+        return Endpoint(
+            path: "academy/lecture/list/",
+            isFullPath: false,
+            method: .get,
+            queryParameters: request
+        )
+    }
 }

@@ -12,15 +12,20 @@ final class CourseDetailViewReactor {
     let courseId: String
     let getCourseUseCase: GetCourseUseCase
     let registerCourseUseCase: RegisterCourseUseCase
+    let getLectureListUseCase: GetLectureListUseCase
+    
+    let lectureFetchSize = 10
     
     init(
         courseId: String,
         getCourseUseCase: GetCourseUseCase,
-        registerCourseUseCase: RegisterCourseUseCase
+        registerCourseUseCase: RegisterCourseUseCase,
+        getLectureListUseCase: GetLectureListUseCase
     ) {
         self.courseId = courseId
         self.getCourseUseCase = getCourseUseCase
         self.registerCourseUseCase = registerCourseUseCase
+        self.getLectureListUseCase = getLectureListUseCase
     }
 }
 
@@ -32,6 +37,8 @@ extension CourseDetailViewReactor: Reactor {
     struct State {
         var isRegistered: Bool?
         var course: Course?
+        var lectures: [Lecture] = []
+        var lectureOffset: Int = 0
     }
     
     enum Action {
@@ -43,7 +50,7 @@ extension CourseDetailViewReactor: Reactor {
     enum Mutation {
         case none
         case didLoadCourse(course: Course)
-        // didLoadLectures
+        case didLoadLectures(lectures: [Lecture])
         case getRegistered(state: Bool)
     }
     
@@ -65,6 +72,9 @@ extension CourseDetailViewReactor: Reactor {
             state.course = course
         case .getRegistered(let isRegistered):
             state.isRegistered = isRegistered
+        case .didLoadLectures(let lectures):
+            state.lectures.append(contentsOf: lectures)
+            state.lectureOffset += lectures.count
         default: break
         }
         return state
@@ -80,10 +90,20 @@ extension CourseDetailViewReactor {
                 .map {
                     .didLoadCourse(course: $0)
                 },
+            
             registerCourseUseCase.checkRegistered(id: courseId)
                 .map {
-                    Mutation.getRegistered(state: $0)
-                }
+                    .getRegistered(state: $0)
+                },
+            
+            getLectureListUseCase.execute(
+                courseId: courseId,
+                offset: currentState.lectureOffset,
+                size: lectureFetchSize
+            )
+            .map {
+                .didLoadLectures(lectures: $0)
+            }
         )
     }
     

@@ -19,8 +19,8 @@ final class CourseCell: UICollectionViewCell {
     @IBOutlet var tagView: UIView!
     
     func bind(_ course: Course) {
-        titleLabel.text = course.id //course.title
-        descriptionLabel.text = course.description
+        titleLabel.text = course.title
+        descriptionLabel.text = course.shortDescription
         
         if let image = course.image,
            let url = URL(string: image) {

@@ -94,7 +94,7 @@ final class DefaultCourseRepository: CourseRepository {
                         return .success(response.courses.map { $0.toDomain() })
                     } else {
                         return .failure(NSError(
-                            domain: "status error", code: -1
+                            domain: response.result.reason ?? "", code: -1
                         ))
                     }
                 case .failure(let error):

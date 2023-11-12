@@ -32,6 +32,12 @@ final class MainSceneDIContainer: MainFlowCoordinatorDependencies {
         )
     }
     
+    func makeLectureRepository() -> LectureRepository {
+        DefaultLectureRepository(
+            eliceApiService: dependencies.eliceApiService
+        )
+    }
+    
     // MARK: - UseCase
     
     func makeGetCourseListUseCase() -> GetCourseListUseCase {
@@ -44,6 +50,10 @@ final class MainSceneDIContainer: MainFlowCoordinatorDependencies {
     
     func makeRegisterCourseUseCase() -> RegisterCourseUseCase {
         DefaultRegisterCourseUseCase(repository: makeCourseRepository())
+    }
+    
+    func makeGetLectureListUseCase() -> GetLectureListUseCase {
+        DefaultGetLectureListUseCase(repository: makeLectureRepository())
     }
     
     // MARK: - Home
@@ -83,7 +93,8 @@ final class MainSceneDIContainer: MainFlowCoordinatorDependencies {
         CourseDetailViewReactor(
             courseId: id,
             getCourseUseCase: makeGetCourseUseCase(),
-            registerCourseUseCase: makeRegisterCourseUseCase()
+            registerCourseUseCase: makeRegisterCourseUseCase(), 
+            getLectureListUseCase: makeGetLectureListUseCase()
         )
     }
     
