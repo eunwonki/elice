@@ -37,13 +37,14 @@ extension CourseDetailViewReactor: Reactor {
     struct State {
         var isRegistered: Bool?
         var course: Course?
-        var lectures: [Lecture] = []
+        var lectureSection: CourseDetailViewController.SingleSection.LectureSectionModel = .init(model: 0, items: [])
         var lectureOffset: Int = 0
     }
     
     enum Action {
         case none
         case viewDidLoad
+        case loadMoreLectures
         case didRegisterClicked(query: CourseRegisterQuery)
     }
     
@@ -60,6 +61,8 @@ extension CourseDetailViewReactor: Reactor {
             return onViewDidLoad()
         case .didRegisterClicked(let query):
             return onRegisterClick(query: query)
+        case .loadMoreLectures:
+            return onLoadMoreLectures()
         default:
             return .just(.none)
         }
@@ -73,7 +76,9 @@ extension CourseDetailViewReactor: Reactor {
         case .getRegistered(let isRegistered):
             state.isRegistered = isRegistered
         case .didLoadLectures(let lectures):
-            state.lectures.append(contentsOf: lectures)
+            state.lectureSection.items.append(
+                contentsOf: lectures.map { .firstItem($0) }
+            )
             state.lectureOffset += lectures.count
         default: break
         }
@@ -115,5 +120,16 @@ extension CourseDetailViewReactor {
         ).map { Mutation.getRegistered(
             state: query == .register
         ) }
+    }
+    
+    func onLoadMoreLectures() -> Observable<Mutation> {
+        getLectureListUseCase.execute(
+            courseId: courseId,
+            offset: currentState.lectureOffset,
+            size: lectureFetchSize
+        )
+        .map {
+            .didLoadLectures(lectures: $0)
+        }
     }
 }

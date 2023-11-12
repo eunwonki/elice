@@ -9,8 +9,17 @@ import Foundation
 import MarkdownView
 import UIKit
 import RxSwift
+import RxDataSources
 
 class CourseDetailViewController: UIViewController, StoryboardInstantiable {
+    class SingleSection {
+        typealias LectureSectionModel = SectionModel<Int, LectureItem>
+        
+        enum LectureItem: Equatable {
+            case firstItem(Lecture)
+        }
+    }
+    
     @IBOutlet weak var stackView: UIStackView!
     
     @IBOutlet weak var titleWithImageView: UIView!
@@ -19,6 +28,8 @@ class CourseDetailViewController: UIViewController, StoryboardInstantiable {
     @IBOutlet weak var descriptionTitleView: UIView!
     lazy var descriptionView = MarkdownView()
     @IBOutlet weak var lecturesTitleView: UIView!
+    @IBOutlet weak var lectureTableView: UITableView!
+    @IBOutlet weak var lectureTableViewHeight: NSLayoutConstraint!
     @IBOutlet weak var spaceView: UIView!
     
     @IBOutlet weak var registerButton: UIButton!
@@ -84,14 +95,17 @@ class CourseDetailViewController: UIViewController, StoryboardInstantiable {
            description.isEmpty == false {
             stackView.addArrangedSubview(descriptionTitleView)
             stackView.addArrangedSubview(descriptionView)
+            descriptionTitleView.isHidden = false
+            descriptionView.isHidden = false
             descriptionView.isScrollEnabled = false
             descriptionView.load(markdown: course.description)
         } else {
-            descriptionTitleView.removeFromSuperview()
-            descriptionView.removeFromSuperview()
+            descriptionTitleView.isHidden = true
+            descriptionView.isHidden = true
         }
         
         stackView.addArrangedSubview(lecturesTitleView)
+        stackView.addArrangedSubview(lectureTableView)
         stackView.addArrangedSubview(spaceView)
     }
     
@@ -106,16 +120,52 @@ class CourseDetailViewController: UIViewController, StoryboardInstantiable {
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
+        let dataSource = RxTableViewSectionedReloadDataSource<SingleSection.LectureSectionModel> {
+            [weak self] dataSource, tableView, indexPath, item in
+            guard let self else { return UITableViewCell() }
+            
+            switch item {
+            case .firstItem(let lecture):
+                guard let cell = self.lectureTableView.dequeueReusableCell(
+                    withIdentifier: LectureCell.reuseIdentifier,
+                    for: indexPath
+                ) as? LectureCell else {
+                    print(lecture)
+                    return UITableViewCell()
+                }
+                
+                cell.bind(lecture)
+                cell.lineToNext.isHidden = false
+                
+                if indexPath.row == reactor.currentState.lectureOffset - 1 {
+                    cell.lineToNext.isHidden = true
+                    reactor.action.onNext(.loadMoreLectures)
+                }
+                
+                return cell
+            }
+        }
+        
         reactor.state.compactMap(\.course)
             .distinctUntilChanged()
             .bind(onNext: setupStackView)
             .disposed(by: disposeBag)
         
-        reactor.state.map(\.lectures)
+        reactor.state.map(\.lectureSection)
             .distinctUntilChanged()
-            .bind { lectures in
-                print("\(lectures)")
-            }
+            .map(Array.init(with:))
+            .bind(to: lectureTableView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
+        
+        reactor.state.map(\.lectureSection)
+            .distinctUntilChanged()
+            .map { CGFloat($0.items.count) }
+            .bind(onNext: { [weak self] count in
+                self?.lectureTableView.isHidden = count == 0
+                self?.lecturesTitleView.isHidden = count == 0
+                
+                self?.lectureTableViewHeight.constant = count * LectureCell.height
+            })
             .disposed(by: disposeBag)
         
         reactor.state.map(\.isRegistered)
