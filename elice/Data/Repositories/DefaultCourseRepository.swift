@@ -84,8 +84,6 @@ final class DefaultCourseRepository: CourseRepository {
     private func fetchCoursesFromNetwork(
         with endpoint: Endpoint<CourseListResponseDTO>
     ) -> Observable<Result<[Course], Error>> {
-        // TODO: Course List 가져오는 API의 실패하는 상황에 대한 Response Model spec을 확인하여 올바른 에러로 처리할 것.
-        
         eliceApiService.request(with: endpoint)
             .map { result in
                 switch result {
@@ -113,12 +111,19 @@ final class DefaultCourseRepository: CourseRepository {
             if query == .registered {
                 return fetchRegisteredList()
                     .subscribe { registered in
+                        var registered = Array(registered)
+                        if registered.count <= offset {
+                            registered = []
+                        } else {
+                            registered = Array(registered[offset..<min(offset+size, registered.count)])
+                        }
                         observer.onNext(APIEndpoints.getCourseList(
                             with: .init(offset: offset,
                                         count: size,
                                         filterIsRecommended: nil,
                                         filterIsFree: nil,
-                                        filterConditions: .init(courseIds: registered))))
+                                        filterConditions: .init(
+                                            courseIds: registered))))
                         observer.onCompleted()
                     }
             } else {
