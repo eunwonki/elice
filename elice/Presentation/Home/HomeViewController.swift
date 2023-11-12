@@ -14,11 +14,12 @@ class HomeViewController: UIViewController, StoryboardInstantiable {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        reactor.action.onNext(.viewDidLoad)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        reactor.action.onNext(.viewDidLoad)
+        reactor.action.onNext(.viewDidAppear)
     }
     
     static func create(

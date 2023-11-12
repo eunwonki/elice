@@ -39,22 +39,23 @@ extension CourseListViewReactor: Reactor {
     
     enum Action {
         case none
-        case viewDidLoad
+        case refresh
         case loadMorePage
         case selectItem(index: IndexPath)
     }
     
     enum Mutation {
         case none
-        case courseListLoaded(list: [Course])
+        case refreshed
+        case courseListLoaded(list: [Course], offset: Int)
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case .viewDidLoad:
-            return loadCourses()
+        case .refresh:
+            return loadCourses(offset: 0)
         case .loadMorePage:
-            return loadCourses()
+            return loadCourses(offset: currentState.offset)
         case .selectItem(let index):
             if case .firstItem(let course) = currentState.courseSection.items[index.row] {
                 flowActions?.showCourseDetail(course.id)
@@ -68,8 +69,11 @@ extension CourseListViewReactor: Reactor {
     func reduce(state: State, mutation: Mutation) -> State {
         var state = state
         switch mutation {
-        case let .courseListLoaded(list):
-            state.offset += list.count
+        case let .courseListLoaded(list, offset):
+            state.offset = offset + list.count
+            if offset == 0 {
+                state.courseSection = .init(model: 0, items: [])
+            }
             state.courseSection.items.append(
                 contentsOf: list.map {
                     CourseListCell.SingleSection.CourseItem.firstItem($0)
@@ -85,14 +89,14 @@ extension CourseListViewReactor: Reactor {
 
 extension CourseListViewReactor {
     
-    private func loadCourses() -> Observable<Mutation> {
+    private func loadCourses(offset: Int) -> Observable<Mutation> {
         getCourseListUseCase.execute(
             query: queryType,
-            offset: currentState.offset,
+            offset: offset,
             size: pageSize
         )
         .map {
-            return .courseListLoaded(list: $0)
+            return .courseListLoaded(list: $0, offset: offset)
         }
     }
     

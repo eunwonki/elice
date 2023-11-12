@@ -60,6 +60,7 @@ extension HomeViewReactor: Reactor {
     enum Action {
         case none
         case viewDidLoad
+        case viewDidAppear
     }
     
     enum Mutation {
@@ -69,9 +70,11 @@ extension HomeViewReactor: Reactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .viewDidLoad: 
-            self.recommendListReactor.action.onNext(.viewDidLoad)
-            self.freeListReactor.action.onNext(.viewDidLoad)
-            self.registeredListReactor.action.onNext(.viewDidLoad)
+            self.recommendListReactor.action.onNext(.refresh)
+            self.freeListReactor.action.onNext(.refresh)
+            return .just(.none)
+        case .viewDidAppear:
+            self.registeredListReactor.action.onNext(.refresh)
             return .just(.none)
         default:
             return .just(.none)
