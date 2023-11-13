@@ -16,7 +16,7 @@ final class CourseCell: UICollectionViewCell {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var descriptionLabel: UILabel!
     @IBOutlet var imageView: UIImageView!
-    @IBOutlet var tagView: UIView!
+    @IBOutlet var tagLabel: UILabel!
     
     func bind(_ course: Course) {
         titleLabel.text = course.title
@@ -31,5 +31,7 @@ final class CourseCell: UICollectionViewCell {
             imageView.kf.setImage(with: url)
             imageView.contentMode = .scaleAspectFit
         }
+        
+        tagLabel.text = course.taglist.joined(separator: ", ")
     }
 }

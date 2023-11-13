@@ -14,7 +14,7 @@ struct CourseDTO: Decodable {
     let description: String?
     let logoFileUrl: String?
     let imageFileUrl: String?
-    let tags: [TagDTO]
+    let taglist: [String]?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -23,7 +23,7 @@ struct CourseDTO: Decodable {
         case description
         case logoFileUrl = "logo_file_url"
         case imageFileUrl = "image_file_url"
-        case tags
+        case taglist
     }
 }
 
@@ -42,7 +42,7 @@ extension CourseDTO {
             image: imageFileUrl,
             shortDescription: shortDescription,
             description: description,
-            tags: tags.map { $0.toDomain() }
+            taglist: taglist ?? []
         )
     }
 }

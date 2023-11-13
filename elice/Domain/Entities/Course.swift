@@ -14,7 +14,7 @@ struct Course: Equatable {
     var image: String?
     var shortDescription: String?
     var description: String?
-    let tags: [Tag]
+    let taglist: [String]
     
     struct Tag {
         let id: String
