@@ -18,6 +18,13 @@ final class CourseCell: UICollectionViewCell {
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var tagLabel: UILabel!
     
+    override func prepareForReuse() {
+        let config = UIImage.SymbolConfiguration(scale: .small)
+        let image = UIImage(systemName: "rays", variableValue: 0.5)?
+            .withConfiguration(config)
+        self.imageView.image = image
+    }
+    
     func bind(_ course: Course) {
         titleLabel.text = course.title
         descriptionLabel.text = course.shortDescription
