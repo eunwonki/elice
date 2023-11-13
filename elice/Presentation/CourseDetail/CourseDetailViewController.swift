@@ -10,6 +10,7 @@ import MarkdownView
 import UIKit
 import RxSwift
 import RxDataSources
+import RxGesture
 
 class CourseDetailViewController: UIViewController, StoryboardInstantiable {
     class SingleSection {
@@ -32,8 +33,7 @@ class CourseDetailViewController: UIViewController, StoryboardInstantiable {
     @IBOutlet weak var lectureTableViewHeight: NSLayoutConstraint!
     @IBOutlet weak var spaceView: UIView!
     
-    @IBOutlet weak var registerButton: UIButton!
-    @IBOutlet weak var registerButtonLabel: UILabel!
+    @IBOutlet weak var registerButton: UILabel!
     
     @IBOutlet weak var titleWithImage: UILabel!
     @IBOutlet weak var logoWithImage: UIImageView!
@@ -110,8 +110,9 @@ class CourseDetailViewController: UIViewController, StoryboardInstantiable {
     }
     
     private func bind() {
-        registerButton.rx.tap
-            .compactMap { [weak self] in
+        registerButton.rx.tapGesture()
+            .when(.recognized)
+            .compactMap { [weak self] _ in
                 self?.reactor.currentState.isRegistered
             }.map {
                 let query: CourseRegisterQuery = $0 ? .unregister : .register
@@ -171,17 +172,12 @@ class CourseDetailViewController: UIViewController, StoryboardInstantiable {
         reactor.state.map(\.isRegistered)
             .distinctUntilChanged()
             .bind { [weak self] registered in
-                guard let registered else {
-                    self?.registerButton.isHidden = true
-                    self?.registerButtonLabel.isHidden = true
-                    return
-                }
-                
-                self?.registerButton.isHidden = false
-                self?.registerButtonLabel.isHidden = false
+                self?.registerButton.isHidden = registered == nil
+                guard let registered else { return }
+                  
                 self?.registerButton.backgroundColor = registered ?
                 UIColor(resource: .red01) : UIColor(resource: .blue01)
-                self?.registerButtonLabel.text = registered ?
+                self?.registerButton.text = registered ?
                 "수강 취소" : "수강 신청"
                 
                 self?.view.setNeedsLayout()
