@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -99,7 +100,7 @@
                                                                             <constraint firstAttribute="height" constant="100" id="fGd-Gl-pP3"/>
                                                                             <constraint firstAttribute="width" constant="200" id="ghg-q4-Qsq"/>
                                                                         </constraints>
-                                                                        <imageReference key="image" image="rays" catalog="system" symbolScale="small" variableValue="0.49999999999999994"/>
+                                                                        <imageReference key="image" image="rays" catalog="system" symbolScale="small" variableValue="1"/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -195,10 +196,10 @@
         <image name="rays" catalog="system" width="128" height="123"/>
         <image name="search" width="48" height="48"/>
         <namedColor name="BlueGray">
-            <color red="0.22700000000000001" green="0.22700000000000001" blue="0.29799999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.22699999809265137" green="0.22699999809265137" blue="0.29800000786781311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Gray147">
-            <color red="0.14099999999999999" green="0.14099999999999999" blue="0.14099999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.14100000262260437" green="0.14100000262260437" blue="0.14100000262260437" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

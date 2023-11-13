@@ -20,8 +20,7 @@ final class CourseCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         let config = UIImage.SymbolConfiguration(scale: .small)
-        let image = UIImage(systemName: "rays", variableValue: 0.5)?
-            .withConfiguration(config)
+        let image = UIImage(systemName: "rays")?.withConfiguration(config)
         self.imageView.image = image
     }
     
