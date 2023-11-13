@@ -111,19 +111,16 @@ final class DefaultCourseRepository: CourseRepository {
             if query == .registered {
                 return fetchRegisteredList()
                     .subscribe { registered in
-                        var registered = Array(registered)
-                        if registered.count <= offset {
-                            registered = []
-                        } else {
-                            registered = Array(registered[offset..<min(offset+size, registered.count)])
-                        }
                         observer.onNext(APIEndpoints.getCourseList(
                             with: .init(offset: offset,
                                         count: size,
                                         filterIsRecommended: nil,
                                         filterIsFree: nil,
                                         filterConditions: .init(
-                                            courseIds: registered))))
+                                            courseIds: self.subRegistered(
+                                                registered,
+                                                offset: offset, size: size)
+                                        ))))
                         observer.onCompleted()
                     }
             } else {
@@ -137,6 +134,20 @@ final class DefaultCourseRepository: CourseRepository {
             }
             
             return Disposables.create()
+        }
+    }
+    
+    /// 수강신청 리스트를 paging하기 위해 전체 리스트에서 일부만 뽑아내는 함수.
+    private func subRegistered(
+        _ target: [String], offset: Int, size: Int
+    ) -> [String] {
+        var registered = Array(target)
+        if target.count <= offset {
+            return []
+        } else {
+            return Array(registered[
+                offset..<min(offset+size, registered.count)
+            ])
         }
     }
     

@@ -26,19 +26,26 @@ struct CourseListRequestDTO: Encodable {
             forKey: .filterIsFree)
         
         if let filterConditions {
-            let jsonEncoder = JSONEncoder()
-            let jsonData = try jsonEncoder.encode(filterConditions)
-            let jsonString = String(data: jsonData, encoding: .utf8)
-            var alloweddCharaterSet = CharacterSet.urlQueryAllowed
-            alloweddCharaterSet.remove(charactersIn: ",:")
-            let percentEncoded = jsonString?
-                .addingPercentEncoding(
-                withAllowedCharacters: alloweddCharaterSet)?
-                .removingPercentEncoding
             try container.encodeIfPresent(
-                percentEncoded,
+                encodeConditionsToURLQuery(),
                 forKey: .filterConditions)
         }
+    }
+    
+    /// json encodable한 변수를 elice api query에 맞게 문자열로 변형
+    private func encodeConditionsToURLQuery() -> String? {
+        let jsonEncoder = JSONEncoder()
+        guard let jsonData = try? jsonEncoder.encode(filterConditions)
+        else {
+            return nil
+        }
+        let jsonString = String(data: jsonData, encoding: .utf8)
+        var alloweddCharaterSet = CharacterSet.urlQueryAllowed
+        alloweddCharaterSet.remove(charactersIn: ",:")
+        return jsonString?
+            .addingPercentEncoding(
+                withAllowedCharacters: alloweddCharaterSet)?
+            .removingPercentEncoding
     }
     
     enum CodingKeys: String, CodingKey {
